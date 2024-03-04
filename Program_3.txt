@@ -1,0 +1,186 @@
+
+
+SQL> create table customer (Id int primary key,Name varchar(10),Address varchar(10),City varchar(10),Country varchar(7),Age int,Salary int);
+
+Table created.
+
+SQL> desc customer;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ ADDRESS                                            VARCHAR2(10)
+ CITY                                               VARCHAR2(10)
+ COUNTRY                                            VARCHAR2(7)
+ AGE                                                NUMBER(38)
+ SALARY                                             NUMBER(38)
+
+SQL> insert into customer values(01,'Susheel','RK House','Kochi','India',26,30000);
+
+1 row created.
+
+SQL> select *from customer;
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+
+SQL> insert into customer values(02,'Priya','JK House','Thrissure','India',26,1500);
+
+1 row created.
+
+SQL> insert into customer values(02,'Purushothaman','PK House','Kannur','India',78,10000);
+insert into customer values(02,'Purushothaman','PK House','Kannur','India',78,10000)
+                               *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."CUSTOMER"."NAME" (actual: 13,
+maximum: 10)
+
+
+SQL> insert into customer values(03,'Purushothaman','PK House','Kannur','India',78,10000);
+insert into customer values(03,'Purushothaman','PK House','Kannur','India',78,10000)
+                               *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."CUSTOMER"."NAME" (actual: 13,
+maximum: 10)
+
+
+SQL> insert into customer values(03,'Prinush','NK House','Kannur','India',35,10000);
+
+1 row created.
+
+SQL> select *from customer;
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+         2 Priya      JK House   Thrissure  India           26       1500
+         3 Prinush    NK House   Kannur     India           35      10000
+
+SQL> insert into customer values(04,'Amrin','Rose House','Kozhikode','UAE',22,50000);
+
+1 row created.
+
+SQL> insert into customer values(04,'Alan','RT House','Kollam','India',29,55000);
+insert into customer values(04,'Alan','RT House','Kollam','India',29,55000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C003995) violated
+
+
+SQL> insert into customer values(05,'Alan','RT House','Kollam','India',29,55000);
+
+1 row created.
+
+SQL> select *from customer;
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+         2 Priya      JK House   Thrissure  India           26       1500
+         3 Prinush    NK House   Kannur     India           35      10000
+         4 Amrin      Rose House Kozhikode  UAE             22      50000
+         5 Alan       RT House   Kollam     India           29      55000
+
+SQL> select *from customer where like name='p%';
+select *from customer where like name='p%'
+                            *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select *from customer where name like 'p%';
+
+no rows selected
+
+SQL> select *from customer where name like 'P%';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         2 Priya      JK House   Thrissure  India           26       1500
+         3 Prinush    NK House   Kannur     India           35      10000
+
+SQL> select *from customer where name like '%ya%';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         2 Priya      JK House   Thrissure  India           26       1500
+
+SQL> select *from customer where city like '%i';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+
+SQL> select *from customer where age like '2%';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+         2 Priya      JK House   Thrissure  India           26       1500
+         4 Amrin      Rose House Kozhikode  UAE             22      50000
+         5 Alan       RT House   Kollam     India           29      55000
+
+SQL> select *from customer where age like '%50%';
+
+no rows selected
+
+SQL> select *from customer where salary like '%50%';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         2 Priya      JK House   Thrissure  India           26       1500
+         4 Amrin      Rose House Kozhikode  UAE             22      50000
+         5 Alan       RT House   Kollam     India           29      55000
+
+SQL> select *from customer where city like 'Ko_hi';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+
+SQL> select *from customer where city like 'Ko_hi%';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+         4 Amrin      Rose House Kozhikode  UAE             22      50000
+
+SQL> select *from customer where city like 'Ko_hi';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+
+SQL> select *from customer where salary like '3__00';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+
+SQL> select *from customer where name like '____a';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         2 Priya      JK House   Thrissure  India           26       1500
+
+SQL> select *from customer where name not like Priya;
+select *from customer where name not like Priya
+                                          *
+ERROR at line 1:
+ORA-00904: "PRIYA": invalid identifier
+
+
+SQL> select *from customer where name not like 'Priya';
+
+        ID NAME       ADDRESS    CITY       COUNTRY        AGE     SALARY
+---------- ---------- ---------- ---------- ------- ---------- ----------
+         1 Susheel    RK House   Kochi      India           26      30000
+         3 Prinush    NK House   Kannur     India           35      10000
+         4 Amrin      Rose House Kozhikode  UAE             22      50000
+         5 Alan       RT House   Kollam     India           29      55000
+
+SQL>
+
+
+

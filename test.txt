@@ -1,0 +1,311 @@
+SQL> connect system
+Enter password:
+Connected.
+SQL> create table student(ID int,Name varchar(10));
+
+Table created.
+
+SQL> insert into student value(01,'Shebin')
+  2  ;
+insert into student value(01,'Shebin')
+                          *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into student valueS(01,'Shebin')
+  2  ;
+
+1 row created.
+
+SQL> select *from student
+  2  ;
+
+        ID NAME
+---------- ----------
+         1 Shebin
+
+SQL> insert into student valueS(02,'John');
+
+1 row created.
+
+SQL> drop table student;
+
+Table dropped.
+
+SQL> create table ktu(Id int primary key,College varchar(15),Place varchar(10));
+
+Table created.
+
+SQL> create table employee(Emp_Id int,Name varchar(15),Salary int);
+create table employee(Emp_Id int,Name varchar(15),Salary int)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table employe(Emp_Id int,Name varchar(15),Salary int);
+
+Table created.
+
+SQL> drop employe;
+drop employe
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop table employe;
+
+Table dropped.
+
+SQL> create table employe(Emp_Id int,Name varchar(15),Salary int,foreign key(Emp_Id) references ktu(Id));
+
+Table created.
+
+SQL> desc employe;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(38)
+ NAME                                               VARCHAR2(15)
+ SALARY                                             NUMBER(38)
+
+SQL> desc ktu;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(38)
+ COLLEGE                                            VARCHAR2(15)
+ PLACE                                              VARCHAR2(10)
+
+SQL> insert into  employe(6784,'Shebin',50000);
+insert into  employe(6784,'Shebin',50000)
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into  employe values(6784,'Shebin',50000);
+insert into  employe values(6784,'Shebin',50000)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SYSTEM.SYS_C004002) violated - parent key not
+found
+
+
+SQL> insert into  ktu values(6784,'MA College','Kothamangalam');
+insert into  ktu values(6784,'MA College','Kothamangalam')
+                                          *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."KTU"."PLACE" (actual: 13,
+maximum: 10)
+
+
+SQL> insert into  ktu values(6784,'MA College','Kochi');
+
+1 row created.
+
+SQL> insert into  employe values(6784,'Shebin',50000);
+
+1 row created.
+
+SQL> insert into  ktu values(&id,'&college','&place');
+Enter value for id: 6454
+Enter value for college: GEC
+Enter value for place: Thrissure
+old   1: insert into  ktu values(&id,'&college','&place')
+new   1: insert into  ktu values(6454,'GEC','Thrissure')
+
+1 row created.
+
+SQL> insert into  ktu values(&id,'&college','&place');
+Enter value for id: 8943
+Enter value for college: CET
+Enter value for place: Trivandrum
+old   1: insert into  ktu values(&id,'&college','&place')
+new   1: insert into  ktu values(8943,'CET','Trivandrum')
+
+1 row created.
+
+SQL> select *from ktu;
+
+        ID COLLEGE         PLACE
+---------- --------------- ----------
+      6784 MA College      Kochi
+      6454 GEC             Thrissure
+      8943 CET             Trivandrum
+
+SQL> insert into  employe values(&emp_id,'&name','&salary');
+Enter value for emp_id: 346246
+Enter value for name: sgasd
+Enter value for salary: sfg
+old   1: insert into  employe values(&emp_id,'&name','&salary')
+new   1: insert into  employe values(346246,'sgasd','sfg')
+insert into  employe values(346246,'sgasd','sfg')
+                                           *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> insert into  employe values(&emp_id,'&name','&salary');
+Enter value for emp_id: 14212
+Enter value for name: jose
+Enter value for salary: 43522
+old   1: insert into  employe values(&emp_id,'&name','&salary')
+new   1: insert into  employe values(14212,'jose','43522')
+insert into  employe values(14212,'jose','43522')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SYSTEM.SYS_C004002) violated - parent key not
+found
+
+
+SQL> insert into  employe values(&emp_id,'&name','&salary');
+Enter value for emp_id: 6454
+Enter value for name: Susheel
+Enter value for salary: 60000
+old   1: insert into  employe values(&emp_id,'&name','&salary')
+new   1: insert into  employe values(6454,'Susheel','60000')
+
+1 row created.
+
+SQL> select *from employe=ktu;
+select *from employe=ktu
+                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select *from employe,ktu where employe=ktu;
+select *from employe,ktu where employe=ktu
+                                       *
+ERROR at line 1:
+ORA-00904: "KTU": invalid identifier
+
+
+SQL> select *from employe,ktu where employe==ktu;
+select *from employe,ktu where employe==ktu
+                                       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select *from ktu;
+
+        ID COLLEGE         PLACE
+---------- --------------- ----------
+      6784 MA College      Kochi
+      6454 GEC             Thrissure
+      8943 CET             Trivandrum
+
+SQL> select *from employe;
+
+    EMP_ID NAME                SALARY
+---------- --------------- ----------
+      6784 Shebin               50000
+      6454 Susheel              60000
+
+SQL> select *from ktu,employe where employe=ktu;
+select *from ktu,employe where employe=ktu
+                                       *
+ERROR at line 1:
+ORA-00904: "KTU": invalid identifier
+
+
+SQL> select *from ktu,employe where emp_id=id;
+
+        ID COLLEGE         PLACE          EMP_ID NAME                SALARY
+---------- --------------- ---------- ---------- --------------- ----------
+      6784 MA College      Kochi            6784 Shebin               50000
+      6454 GEC             Thrissure        6454 Susheel              60000
+
+SQL> select *from ktu,employe where emp_id==id;
+select *from ktu,employe where emp_id==id
+                                      *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select *from ktu,employe where ktu=employe;
+select *from ktu,employe where ktu=employe
+                                   *
+ERROR at line 1:
+ORA-00904: "EMPLOYE": invalid identifier
+
+
+SQL> select *from ktu,employe where ktu.id=employe.emp_id;
+
+        ID COLLEGE         PLACE          EMP_ID NAME                SALARY
+---------- --------------- ---------- ---------- --------------- ----------
+      6784 MA College      Kochi            6784 Shebin               50000
+      6454 GEC             Thrissure        6454 Susheel              60000
+
+SQL> select Id,Name,Salary ktu,employe where ktu.id=employe.emp_id;
+select Id,Name,Salary ktu,employe where ktu.id=employe.emp_id
+                                  *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select Id,Name,Salary from ktu,employe where ktu.id=employe.emp_id;
+
+        ID NAME                SALARY
+---------- --------------- ----------
+      6784 Shebin               50000
+      6454 Susheel              60000
+
+SQL> select Id,Name,Salary,college from ktu,employe where ktu.id=employe.emp_id;
+
+        ID NAME                SALARY COLLEGE
+---------- --------------- ---------- ---------------
+      6784 Shebin               50000 MA College
+      6454 Susheel              60000 GEC
+
+SQL> select Id from ktu,employe where ktu.id=employe.emp_id;
+
+        ID
+----------
+      6784
+      6454
+
+SQL> insert into employe values(5,''Kumar',43232);
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> insert into employe values(5,'Kumar',43232);
+insert into employe values(5,'Kumar',43232)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SYSTEM.SYS_C004002) violated - parent key not
+found
+
+
+SQL> insert into employe values(6784,'Kumar',43232);
+
+1 row created.
+
+SQL> select *from employe;
+
+    EMP_ID NAME                SALARY
+---------- --------------- ----------
+      6784 Shebin               50000
+      6454 Susheel              60000
+      6784 Kumar                43232
+
+SQL> update employe set salary=10000+salary where emp_id=6784;
+
+2 rows updated.
+
+SQL> select *from employe;
+
+    EMP_ID NAME                SALARY
+---------- --------------- ----------
+      6784 Shebin               60000
+      6454 Susheel              60000
+      6784 Kumar                53232
+
+SQL> commit;
+
+Commit complete.
+
+SQL>

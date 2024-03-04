@@ -1,0 +1,110 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Mon Mar 4 14:52:43 2024
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect  system;
+Enter password:
+Connected.
+SQL> select *from company;
+
+PRODUCT_ID PRODUCT_NAME SUPPLIER_ID CATEGORY_ID       UNIT      PRICE
+---------- ------------ ----------- ----------- ---------- ----------
+         1 Notebook               1           1         10         18
+         2 Pen                    1           1         20         20
+         3 Pencil                 1           2         12         10
+         4 Sugar                  2           2         48         22
+         5 chocolate              2           2         36         50
+
+SQL> select max(price) from company where supplier_id=1;
+
+MAX(PRICE)
+----------
+        20
+
+SQL> select min(price) from company where supplier_id=1;
+
+MIN(PRICE)
+----------
+        10
+
+SQL> select max(price) from company where supplier_id=12;
+
+MAX(PRICE)
+----------
+
+
+SQL> select max(price) from company where supplier_id=2;
+
+MAX(PRICE)
+----------
+        50
+
+SQL> select min(price) from company where supplier_id=2;
+
+MIN(PRICE)
+----------
+        22
+
+SQL> select min(price) from company where category_id=1;;
+select min(price) from company where category_id=1;
+                                                  *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> select min(price) from company where category_id=1;
+
+MIN(PRICE)
+----------
+        18
+
+SQL> select count(product_name) from company where category_id=1;
+
+COUNT(PRODUCT_NAME)
+-------------------
+                  2
+
+SQL> select count(product_name) from company where supplier_id=1;
+
+COUNT(PRODUCT_NAME)
+-------------------
+                  3
+
+SQL> select count(product_name) from company where price>20;
+
+COUNT(PRODUCT_NAME)
+-------------------
+                  2
+
+SQL> select sum(price) from company where supplier_id=1;
+
+SUM(PRICE)
+----------
+        48
+
+SQL> select sum(price) from company where category_id=1;
+
+SUM(PRICE)
+----------
+        38
+
+SQL> select avg(price) from company;
+
+AVG(PRICE)
+----------
+        24
+
+SQL> select avg(price) from company where category_id=1;
+
+AVG(PRICE)
+----------
+        19
+
+SQL> select *from company where price>(select avg(price) from company);
+
+PRODUCT_ID PRODUCT_NAME SUPPLIER_ID CATEGORY_ID       UNIT      PRICE
+---------- ------------ ----------- ----------- ---------- ----------
+         5 chocolate              2           2         36         50
+
+SQL> select *from company where price>(select avg(price) from company);
