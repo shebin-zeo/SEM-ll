@@ -1,0 +1,144 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Wed Mar 27 10:14:02 2024
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> select *from sailor;
+
+       SID SNAME               RATING        AGE
+---------- --------------- ---------- ----------
+        22 Dustin                   7         45
+        29 Brutus                   1         33
+        31 Lubber                   8         55
+        32 Andy                     8         25
+        58 Rusty                   10         35
+        64 Horatio                  7         35
+        71 Zorba                   10         16
+        74 Horatio                  9         35
+        85 Art                      3         25
+        95 Bob                      3         63
+
+10 rows selected.
+
+SQL> select *from boat;
+select *from boat
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select *from boats;
+
+       BID BNAME           COLOR
+---------- --------------- ----------
+       101 Interlake       Blue
+       102 Interlake       Red
+       103 Clippr          Green
+       104 Marine          Red
+
+SQL> select *from reserves;
+
+       SID        BID DAY
+---------- ---------- ---------
+        22        101 10-OCT-98
+        22        102 10-OCT-98
+        22        103 10-AUG-98
+        22        104 10-JUL-98
+        31        102 11-OCT-98
+        31        103 11-JUN-98
+        31        104 11-DEC-98
+        64        101 09-MAY-98
+        64        102 09-AUG-98
+        74        103 09-AUG-98
+
+10 rows selected.
+
+SQL> select R.sid from boats B,reserves R where R.bid=B.bid and B.color='Red' Union select R2.sid from boats B2,reserves R2 where R2.bid=B2.bid and B2.color='Green';
+
+       SID
+----------
+        22
+        31
+        64
+        74
+
+SQL> select S.sname  from sailor S where S.sid IN(select R.sid from reserves R where R.bid=103);
+
+SNAME
+---------------
+Dustin
+Lubber
+Horatio
+
+SQL> select S.sname,S.age from sailor S where S.age<=ALL (select age from sailor);
+
+SNAME                  AGE
+--------------- ----------
+Zorba                   16
+
+SQL> select S.sname from sailor S where NOT EXISTS((select B.bid from boats B) EXCEPT (select R.bid from reserves R where R.sid=S.sid));
+select S.sname from sailor S where NOT EXISTS((select B.bid from boats B) EXCEPT (select R.bid from reserves R where R.sid=S.sid))
+                                                                          *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select S.sname from sailor S where NOT EXISTS (( select B.bid from boats B) EXCEPT (select R.bid from reserves R where R.sid=S.sid));
+select S.sname from sailor S where NOT EXISTS (( select B.bid from boats B) EXCEPT (select R.bid from reserves R where R.sid=S.sid))
+                                                                            *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select S.sname from sailor S where NOT EXISTS (select B.bid from boats B where NOT EXISTS (select R.bid from reserves R where R.bid=B.bid and R.sid=S.sid));
+
+SNAME
+---------------
+Dustin
+
+SQL> select S.sname,S.age from sailor S where sailor S where S.age=(select MIN(S2.age)from sailor S2);
+select S.sname,S.age from sailor S where sailor S where S.age=(select MIN(S2.age)from sailor S2)
+                                                *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> select S.sname,S.age from sailor S where S.age=(select MIN(S.age)from sailor S);
+
+SNAME                  AGE
+--------------- ----------
+Zorba                   16
+
+SQL> select S.rating,AVG(S.age) AS Average_age from sailor S GROUP BY S.rating;
+
+    RATING AVERAGE_AGE
+---------- -----------
+         1          33
+         8          40
+         7          40
+         3          44
+        10        25.5
+         9          35
+
+6 rows selected.
+
+SQL> select COUNT(DISTINCT S.sname) from sailor S;
+
+COUNT(DISTINCTS.SNAME)
+----------------------
+                     9
+
+SQL> select AVG(S.age) from sailor S;
+
+AVG(S.AGE)
+----------
+      36.7
+
+SQL> commit;
+
+Commit complete.
+
+SQL>
