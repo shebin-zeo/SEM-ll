@@ -1,0 +1,323 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Wed Feb 28 14:07:04 2024
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect sql
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> create table category(Category_id int primary key,Category_Name varchar(10),Description varchar(12));
+
+Table created.
+
+SQL> desc category
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CATEGORY_ID                               NOT NULL NUMBER(38)
+ CATEGORY_NAME                                      VARCHAR2(10)
+ DESCRIPTION                                        VARCHAR2(12)
+
+SQL> create table product(Product_Id int primary key,Product_Name varchar(10),Category_Id int,Price int,foreign key(Category_Id)references category(Category_Id));
+
+Table created.
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PRODUCT_ID                                NOT NULL NUMBER(38)
+ PRODUCT_NAME                                       VARCHAR2(10)
+ CATEGORY_ID                                        NUMBER(38)
+ PRICE                                              NUMBER(38)
+
+SQL> insert into category values(6320,'Stationery','School and college items');
+insert into category values(6320,'Stationery','School and college items')
+                                              *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."CATEGORY"."DESCRIPTION"
+(actual: 24, maximum: 12)
+
+
+SQL> insert into category values(6320,'Stationery','School items');
+
+1 row created.
+
+SQL> select *from category;
+
+CATEGORY_ID CATEGORY_N DESCRIPTION
+----------- ---------- ------------
+       6320 Stationery School items
+
+SQL> insert into category values(6321,'Medicine','First Aid');
+
+1 row created.
+
+SQL> select *from category;
+
+CATEGORY_ID CATEGORY_N DESCRIPTION
+----------- ---------- ------------
+       6320 Stationery School items
+       6321 Medicine   First Aid
+
+SQL> insert into category values(6321,'Sweets','Chocolate');
+insert into category values(6321,'Sweets','Chocolate')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C004003) violated
+
+
+SQL> insert into category values(6322,'Sweets','Chocolate');
+
+1 row created.
+
+SQL> select *from category;
+
+CATEGORY_ID CATEGORY_N DESCRIPTION
+----------- ---------- ------------
+       6320 Stationery School items
+       6321 Medicine   First Aid
+       6322 Sweets     Chocolate
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PRODUCT_ID                                NOT NULL NUMBER(38)
+ PRODUCT_NAME                                       VARCHAR2(10)
+ CATEGORY_ID                                        NUMBER(38)
+ PRICE                                              NUMBER(38)
+
+SQL> insert into product values(4562,'Pen',6320,10);
+
+1 row created.
+
+SQL> select *from product;
+
+PRODUCT_ID PRODUCT_NA CATEGORY_ID      PRICE
+---------- ---------- ----------- ----------
+      4562 Pen               6320         10
+
+SQL> insert into product values(4563,'Pencil',6320,6);
+
+1 row created.
+
+SQL> insert into product values(4564,'Eraser',6320,5);
+
+1 row created.
+
+SQL> select *from product;
+
+PRODUCT_ID PRODUCT_NA CATEGORY_ID      PRICE
+---------- ---------- ----------- ----------
+      4562 Pen               6320         10
+      4563 Pencil            6320          6
+      4564 Eraser            6320          5
+
+SQL> insert into product values(4565,'Paracetamol',6321,25);
+insert into product values(4565,'Paracetamol',6321,25)
+                                *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."PRODUCT"."PRODUCT_NAME"
+(actual: 11, maximum: 10)
+
+
+SQL> insert into product values(4565,'Dolo',6321,25);
+
+1 row created.
+
+SQL> insert into product values(4566,'Citrizine',6321,12);
+
+1 row created.
+
+SQL> insert into product values(4566,'Amoxycil',6321,67);
+insert into product values(4566,'Amoxycil',6321,67)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C004004) violated
+
+
+SQL> insert into product values(4567,'Amoxycil',6321,67);
+
+1 row created.
+
+SQL> select *from product;
+
+PRODUCT_ID PRODUCT_NA CATEGORY_ID      PRICE
+---------- ---------- ----------- ----------
+      4562 Pen               6320         10
+      4563 Pencil            6320          6
+      4564 Eraser            6320          5
+      4565 Dolo              6321         25
+      4566 Citrizine         6321         12
+      4567 Amoxycil          6321         67
+
+6 rows selected.
+
+SQL> select product_id,product_Name,category_name from product natural join category;
+
+PRODUCT_ID PRODUCT_NA CATEGORY_N
+---------- ---------- ----------
+      4562 Pen        Stationery
+      4563 Pencil     Stationery
+      4564 Eraser     Stationery
+      4565 Dolo       Medicine
+      4566 Citrizine  Medicine
+      4567 Amoxycil   Medicine
+
+6 rows selected.
+
+SQL> insert into product values(4568,'Dairymilk',6322,50);
+
+1 row created.
+
+SQL> select *from product;
+
+PRODUCT_ID PRODUCT_NA CATEGORY_ID      PRICE
+---------- ---------- ----------- ----------
+      4562 Pen               6320         10
+      4563 Pencil            6320          6
+      4564 Eraser            6320          5
+      4565 Dolo              6321         25
+      4566 Citrizine         6321         12
+      4567 Amoxycil          6321         67
+      4568 Dairymilk         6322         50
+
+7 rows selected.
+
+SQL> select *from product natural join category;
+
+CATEGORY_ID PRODUCT_ID PRODUCT_NA      PRICE CATEGORY_N DESCRIPTION
+----------- ---------- ---------- ---------- ---------- ------------
+       6320       4562 Pen                10 Stationery School items
+       6320       4563 Pencil              6 Stationery School items
+       6320       4564 Eraser              5 Stationery School items
+       6321       4565 Dolo               25 Medicine   First Aid
+       6321       4566 Citrizine          12 Medicine   First Aid
+       6321       4567 Amoxycil           67 Medicine   First Aid
+       6322       4568 Dairymilk          50 Sweets     Chocolate
+
+7 rows selected.
+
+SQL> select category_id,product_name from product natural join category;
+
+CATEGORY_ID PRODUCT_NA
+----------- ----------
+       6320 Pen
+       6320 Pencil
+       6320 Eraser
+       6321 Dolo
+       6321 Citrizine
+       6321 Amoxycil
+       6322 Dairymilk
+
+7 rows selected.
+
+SQL> select category_id,product_name from product,category;
+select category_id,product_name from product,category
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> select category_id,product_name from product,category;
+select category_id,product_name from product,category
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> select category_id,product_name from category,product;
+select category_id,product_name from category,product
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> delete from product where product_name='Dairymilk';
+
+1 row deleted.
+
+SQL> select product_id,product_name,category_name natural right outer join category;
+select product_id,product_name,category_name natural right outer join category
+                                                     *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select product_id,product_name,category_name from natural right outer join category;
+select product_id,product_name,category_name from natural right outer join category
+                                                                                  *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> select product_id,product_name,category_name from natural right outer join category;
+select product_id,product_name,category_name from natural right outer join category
+                                                                                  *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> select product_id,product_name,category_name from product natural right outer join category;
+
+PRODUCT_ID PRODUCT_NA CATEGORY_N
+---------- ---------- ----------
+      4562 Pen        Stationery
+      4563 Pencil     Stationery
+      4564 Eraser     Stationery
+      4565 Dolo       Medicine
+      4566 Citrizine  Medicine
+      4567 Amoxycil   Medicine
+                      Sweets
+
+7 rows selected.
+
+SQL> select product_id,product_name,category_name from product natural left outer join category;
+
+PRODUCT_ID PRODUCT_NA CATEGORY_N
+---------- ---------- ----------
+      4564 Eraser     Stationery
+      4563 Pencil     Stationery
+      4562 Pen        Stationery
+      4567 Amoxycil   Medicine
+      4566 Citrizine  Medicine
+      4565 Dolo       Medicine
+
+6 rows selected.
+
+SQL> select product_id,product_name,category_name from product natural full outer join category;
+
+PRODUCT_ID PRODUCT_NA CATEGORY_N
+---------- ---------- ----------
+      4564 Eraser     Stationery
+      4563 Pencil     Stationery
+      4562 Pen        Stationery
+      4567 Amoxycil   Medicine
+      4566 Citrizine  Medicine
+      4565 Dolo       Medicine
+                      Sweets
+
+7 rows selected.
+
+SQL> select product_id,product_name,category_name from product inner join category on product.category_id=category.category_id;
+
+PRODUCT_ID PRODUCT_NA CATEGORY_N
+---------- ---------- ----------
+      4562 Pen        Stationery
+      4563 Pencil     Stationery
+      4564 Eraser     Stationery
+      4565 Dolo       Medicine
+      4566 Citrizine  Medicine
+      4567 Amoxycil   Medicine
+
+6 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL>

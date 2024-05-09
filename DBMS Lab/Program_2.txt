@@ -1,0 +1,106 @@
+
+SQL> create table employee(Emp_Id int primary key,Name varchar(10),Department varchar(10),Salary int,City varchar(10));
+
+Table created.
+
+SQL> desc  employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(10)
+ SALARY                                             NUMBER(38)
+ CITY                                               VARCHAR2(10)
+
+SQL> commit employee
+  2  commit employee;
+commit employee
+       *
+ERROR at line 1:
+ORA-02185: a token other than WORK follows COMMIT
+
+
+SQL> commit employee;
+commit employee
+       *
+ERROR at line 1:
+ORA-02185: a token other than WORK follows COMMIT
+
+
+SQL> insert into table employee(01,'Shebin','Production',25000,'Valanchery');
+insert into table employee(01,'Shebin','Production',25000,'Valanchery')
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> insert into table employee values(01,'Shebin','Production',25000,'Valanchery');
+insert into table employee values(01,'Shebin','Production',25000,'Valanchery')
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> insert into  employee values(01,'Shebin','Production',25000,'Valanchery');
+
+1 row created.
+
+SQL> insert into  employee values(01,'Anas','Sales',30000,'Tirur');
+insert into  employee values(01,'Anas','Sales',30000,'Tirur')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C003994) violated
+
+
+SQL> insert into  employee values(02,'Anas','Sales',30000,'Tirur');
+
+1 row created.
+
+SQL> insert into  employee values(03,'Melvin','Sales',30000,'Kochi');
+
+1 row created.
+
+SQL> insert into  employee values(04,'Sugeeth','Advertisement',20000,'Calicut');
+insert into  employee values(04,'Sugeeth','Advertisement',20000,'Calicut')
+                                          *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."EMPLOYEE"."DEPARTMENT" (actual:
+13, maximum: 10)
+
+
+SQL> insert into  employee values(04,'Sugeeth','Ads',20000,'Calicut');
+
+1 row created.
+
+SQL> insert into  employee values(05,'Mukesh','Transport',15000,'Kannur');
+
+1 row created.
+
+SQL> select *from employee;
+
+    EMP_ID NAME       DEPARTMENT     SALARY CITY
+---------- ---------- ---------- ---------- ----------
+         1 Shebin     Production      25000 Valanchery
+         2 Anas       Sales           30000 Tirur
+         3 Melvin     Sales           30000 Kochi
+         4 Sugeeth    Ads             20000 Calicut
+         5 Mukesh     Transport       15000 Kannur
+
+SQL> select *from employee where Emp_Id=1;
+
+    EMP_ID NAME       DEPARTMENT     SALARY CITY
+---------- ---------- ---------- ---------- ----------
+         1 Shebin     Production      25000 Valanchery
+
+SQL> select *from employee where department='sales';
+
+no rows selected
+
+SQL> select *from employee where department='Sales';
+
+    EMP_ID NAME       DEPARTMENT     SALARY CITY
+---------- ---------- ---------- ---------- ----------
+         2 Anas       Sales           30000 Tirur
+         3 Melvin     Sales           30000 Kochi
+
+SQL>

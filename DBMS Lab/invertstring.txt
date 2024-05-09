@@ -1,0 +1,11 @@
+set serveroutput on;
+set verify off;
+declare
+string varchar(20)
+s1="hello world";
+s2="";
+begin
+s2={[@s1]};
+dbms_output.put_line("inverted string is"||s2);
+end;
+/

@@ -1,0 +1,74 @@
+
+
+CREATE OR REPLACE FUNCTION factorial(n IN NUMBER) RETURN NUMBER IS
+BEGIN
+    IF n = 0 THEN
+        RETURN 1;
+    ELSE
+        RETURN n * factorial(n - 1);
+    END IF;
+END;
+/
+
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    input_string VARCHAR2(100) := 'Hello, World!';
+    inverted_string VARCHAR2(100);
+BEGIN
+    FOR i IN REVERSE 1..LENGTH(input_string) LOOP
+        inverted_string := inverted_string || SUBSTR(input_string, i, 1);
+    END LOOP;
+    
+    DBMS_OUTPUT.PUT_LINE('Original String: ' || input_string);
+    DBMS_OUTPUT.PUT_LINE('Inverted String: ' || inverted_string);
+END;
+/
+
+
+declare
+n number;
+fac number:=1;
+i number;
+ 
+begin
+n:=&n;
+ 
+for i in 1..n
+loop
+fac:=fac*i;
+end loop;
+ 
+dbms_output.put_line('factorial='||fac);
+end;
+/
+
+CREATE OR REPLACE FUNCTION factorial(n IN NUMBER) RETURN NUMBER IS 
+DECLARE
+   fact number :=1;
+   n number := &n;
+BEGIN
+   while n > 0 loop
+      fact:=n*fact;
+      n:=n-1;
+   end loop;
+   dbms_output.put_line(fact);
+END;
+
+
+CREATE OR REPLACE FUNCTION fac(n IN NUMBER);
+RETURN NUMBER IS 
+DECLARE
+   fact number :=1;
+   n number(5);
+   n:=&n;
+BEGIN
+   while n > 0 loop
+      fact:=n*fact;
+      n:=n-1;
+   end loop;
+  
+   dbms_output.put_line(fact);
+END fac;
+/

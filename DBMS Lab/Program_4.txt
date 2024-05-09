@@ -1,0 +1,341 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Wed Feb 14 10:12:07 2024
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect systen;
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> desc department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID                                   NOT NULL NUMBER(5)
+ DEPT_NAME                                          VARCHAR2(10)
+ HOD                                                VARCHAR2(10)
+
+SQL> desc emplo;
+ERROR:
+ORA-04043: object emplo does not exist
+
+
+SQL> desc employ;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                                        NUMBER(5)
+ NAME                                               VARCHAR2(10)
+ DEPT_ID                                            NUMBER(5)
+ SALARY                                             NUMBER(38)
+
+SQL> drop table department;
+drop table department
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys
+
+
+SQL> drop table employ;
+
+Table dropped.
+
+SQL> drop table department;
+
+Table dropped.
+
+SQL> create table department(Dept_Id int primary key,Dept_Name varchar(10),City varchar(10));
+
+Table created.
+
+SQL> desc department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID                                   NOT NULL NUMBER(38)
+ DEPT_NAME                                          VARCHAR2(10)
+ CITY                                               VARCHAR2(10)
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(10)
+ SALARY                                             NUMBER(38)
+ CITY                                               VARCHAR2(10)
+
+SQL> drop table  employee;
+
+Table dropped.
+
+SQL> create table employee(Emp_Id int primary key,Name varchar(10),Dept_Id int,Salary int,foreign key(Dept_Id) references department(Dept_Id));
+
+Table created.
+
+SQL> desc department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID                                   NOT NULL NUMBER(38)
+ DEPT_NAME                                          VARCHAR2(10)
+ CITY                                               VARCHAR2(10)
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ DEPT_ID                                            NUMBER(38)
+ SALARY                                             NUMBER(38)
+
+SQL> insert into department values(01,'CSE','Kochi');
+
+1 row created.
+
+SQL> update department set dept_id='CS01'where Dept_id=01;
+update department set dept_id='CS01'where Dept_id=01
+                              *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> update department set dept_id=001 where Dept_id=01;
+
+1 row updated.
+
+SQL> insert into department values(002,'MCA','Ernamkulam');
+
+1 row created.
+
+SQL> insert into department values(003,'EEE','Kothamangalam');
+insert into department values(003,'EEE','Kothamangalam')
+                                        *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."DEPARTMENT"."CITY" (actual: 13,
+maximum: 10)
+
+
+SQL> insert into department values(003,'EEE','Thrissure');
+
+1 row created.
+
+SQL> insert into department values(003,'CIVIL','KOllam');
+insert into department values(003,'CIVIL','KOllam')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C003998) violated
+
+
+SQL> insert into department values(004,'Civil','Kollam');
+
+1 row created.
+
+SQL> insert into department values(005,'Mech','Kannur');
+
+1 row created.
+
+SQL> select *from department;
+
+   DEPT_ID DEPT_NAME  CITY
+---------- ---------- ----------
+         1 CSE        Kochi
+         2 MCA        Ernamkulam
+         3 EEE        Thrissure
+         4 Civil      Kollam
+         5 Mech       Kannur
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ DEPT_ID                                            NUMBER(38)
+ SALARY                                             NUMBER(38)
+
+SQL> insert into employee values(6780,'Meera',01,50000);
+
+1 row created.
+
+SQL> insert into employee values(6781,'Susheel',02,20000);
+
+1 row created.
+
+SQL> insert into employee values(6782,'Arun',03,30000);
+
+1 row created.
+
+SQL> insert into employee values(6784,'Merin',04,70000);
+
+1 row created.
+
+SQL> insert into employee values(6785,'Jerry',05,55000);
+
+1 row created.
+
+SQL> insert into employee values(6786,'Kumar',05,60000);
+
+1 row created.
+
+SQL> select *from employee;
+
+    EMP_ID NAME          DEPT_ID     SALARY
+---------- ---------- ---------- ----------
+      6780 Meera               1      50000
+      6781 Susheel             2      20000
+      6782 Arun                3      30000
+      6784 Merin               4      70000
+      6785 Jerry               5      55000
+      6786 Kumar               5      60000
+
+6 rows selected.
+
+SQL> update  employee set salary=50000 where emp_id=6786;
+
+1 row updated.
+
+SQL> select *from employee;
+
+    EMP_ID NAME          DEPT_ID     SALARY
+---------- ---------- ---------- ----------
+      6780 Meera               1      50000
+      6781 Susheel             2      20000
+      6782 Arun                3      30000
+      6784 Merin               4      70000
+      6785 Jerry               5      55000
+      6786 Kumar               5      50000
+
+6 rows selected.
+
+SQL> delete from employee where emp_id=6786;
+
+1 row deleted.
+
+SQL> select *from employee;
+
+    EMP_ID NAME          DEPT_ID     SALARY
+---------- ---------- ---------- ----------
+      6780 Meera               1      50000
+      6781 Susheel             2      20000
+      6782 Arun                3      30000
+      6784 Merin               4      70000
+      6785 Jerry               5      55000
+
+SQL> delete from employee where name='Meera';
+
+1 row deleted.
+
+SQL> select *from employee;
+
+    EMP_ID NAME          DEPT_ID     SALARY
+---------- ---------- ---------- ----------
+      6781 Susheel             2      20000
+      6782 Arun                3      30000
+      6784 Merin               4      70000
+      6785 Jerry               5      55000
+
+SQL> insert into employee values(6790,'Thomas',5,60000);
+
+1 row created.
+
+SQL> select *from employee;
+
+    EMP_ID NAME          DEPT_ID     SALARY
+---------- ---------- ---------- ----------
+      6781 Susheel             2      20000
+      6782 Arun                3      30000
+      6784 Merin               4      70000
+      6785 Jerry               5      55000
+      6790 Thomas              5      60000
+
+SQL> update employee set salary=salary+10000 where dept_id=5;
+
+2 rows updated.
+
+SQL> select *from employee;
+
+    EMP_ID NAME          DEPT_ID     SALARY
+---------- ---------- ---------- ----------
+      6781 Susheel             2      20000
+      6782 Arun                3      30000
+      6784 Merin               4      70000
+      6785 Jerry               5      65000
+      6790 Thomas              5      70000
+
+SQL> select name,dept_name from employee,department where salary>50000 and employee.dept_id=department.dept_id;
+
+NAME       DEPT_NAME
+---------- ----------
+Merin      Civil
+Thomas     Mech
+Jerry      Mech
+
+SQL> select name,dept_name from employee,department where employee.dept_id=department.dept_id;
+
+NAME       DEPT_NAME
+---------- ----------
+Susheel    MCA
+Arun       EEE
+Merin      Civil
+Thomas     Mech
+Jerry      Mech
+
+SQL> select name,dept_name from employee,department;
+
+NAME       DEPT_NAME
+---------- ----------
+Susheel    CSE
+Susheel    MCA
+Susheel    EEE
+Susheel    Civil
+Susheel    Mech
+Arun       CSE
+Arun       MCA
+Arun       EEE
+Arun       Civil
+Arun       Mech
+Merin      CSE
+
+NAME       DEPT_NAME
+---------- ----------
+Merin      MCA
+Merin      EEE
+Merin      Civil
+Merin      Mech
+Jerry      CSE
+Jerry      MCA
+Jerry      EEE
+Jerry      Civil
+Jerry      Mech
+Thomas     CSE
+Thomas     MCA
+
+NAME       DEPT_NAME
+---------- ----------
+Thomas     EEE
+Thomas     Civil
+Thomas     Mech
+
+25 rows selected.
+
+SQL> select name,dept_name from employee,department where employee.dept_id=department.dept_id;
+
+NAME       DEPT_NAME
+---------- ----------
+Susheel    MCA
+Arun       EEE
+Merin      Civil
+Thomas     Mech
+Jerry      Mech
+
+SQL> select name,city from employee,department where city='Kollam' and employee.dept_id=department.dept_id;
+
+NAME       CITY
+---------- ----------
+Merin      Kollam
+
+SQL>
+
+
+

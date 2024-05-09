@@ -1,0 +1,1136 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Wed Apr 3 10:15:47 2024
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> sho user;
+USER is "SYSTEM"
+SQL> select * from all users;
+select * from all users
+              *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> select*from all users;
+select*from all users
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> select*from  users;
+select*from  users
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+SYSCATALOG                     SYNONYM
+CATALOG                        SYNONYM
+TAB                            SYNONYM
+COL                            SYNONYM
+TABQUOTAS                      SYNONYM
+SYSFILES                       SYNONYM
+PUBLICSYN                      SYNONYM
+MVIEW$_ADV_WORKLOAD            TABLE
+MVIEW$_ADV_BASETABLE           TABLE
+MVIEW$_ADV_SQLDEPEND           TABLE
+MVIEW$_ADV_PRETTY              TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+MVIEW$_ADV_TEMP                TABLE
+MVIEW$_ADV_FILTER              TABLE
+MVIEW$_ADV_LOG                 TABLE
+MVIEW$_ADV_FILTERINSTANCE      TABLE
+MVIEW$_ADV_LEVEL               TABLE
+MVIEW$_ADV_ROLLUP              TABLE
+MVIEW$_ADV_AJG                 TABLE
+MVIEW$_ADV_FJG                 TABLE
+MVIEW$_ADV_GC                  TABLE
+MVIEW$_ADV_CLIQUE              TABLE
+MVIEW$_ADV_ELIGIBLE            TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+MVIEW$_ADV_OUTPUT              TABLE
+MVIEW$_ADV_EXCEPTIONS          TABLE
+MVIEW$_ADV_PARAMETERS          TABLE
+MVIEW$_ADV_INFO                TABLE
+MVIEW$_ADV_JOURNAL             TABLE
+MVIEW$_ADV_PLAN                TABLE
+MVIEW_WORKLOAD                 VIEW
+MVIEW_FILTER                   VIEW
+MVIEW_LOG                      VIEW
+MVIEW_FILTERINSTANCE           VIEW
+MVIEW_RECOMMENDATIONS          VIEW
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+MVIEW_EVALUATIONS              VIEW
+MVIEW_EXCEPTIONS               VIEW
+AQ$_QUEUE_TABLES               TABLE
+AQ$_QUEUES                     TABLE
+AQ$_SCHEDULES                  TABLE
+AQ$_INTERNET_AGENTS            TABLE
+AQ$_INTERNET_AGENT_PRIVS       TABLE
+DEF$_AQCALL                    TABLE
+DEF$_AQERROR                   TABLE
+AQ$_DEF$_AQCALL_F              VIEW
+AQ$DEF$_AQCALL                 VIEW
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEF$_ERROR                     TABLE
+AQ$_DEF$_AQERROR_F             VIEW
+AQ$DEF$_AQERROR                VIEW
+DEF$_DESTINATION               TABLE
+DEF$_CALLDEST                  TABLE
+DEF$_DEFAULTDEST               TABLE
+DEF$_LOB                       TABLE
+DEF$_TEMP$LOB                  TABLE
+DEF$_PROPAGATOR                TABLE
+DEF$_ORIGIN                    TABLE
+DEF$_PUSHED_TRANSACTIONS       TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+OL$                            TABLE
+OL$HINTS                       TABLE
+OL$NODES                       TABLE
+LOGMNR_SESSION_EVOLVE$         TABLE
+LOGMNR_HEADER1$                TABLE
+LOGMNR_HEADER2$                TABLE
+LOGMNR_UID$                    TABLE
+LOGMNRC_DBNAME_UID_MAP         TABLE
+LOGMNR_DICTSTATE$              TABLE
+LOGMNR_DICTIONARY$             TABLE
+LOGMNR_OBJ$                    TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+LOGMNR_USER$                   TABLE
+LOGMNRC_GTLO                   TABLE
+LOGMNRC_GTCS                   TABLE
+LOGMNRC_GSII                   TABLE
+LOGMNR_TAB$                    TABLE
+LOGMNR_COL$                    TABLE
+LOGMNR_ATTRCOL$                TABLE
+LOGMNR_TS$                     TABLE
+LOGMNR_IND$                    TABLE
+LOGMNR_TABPART$                TABLE
+LOGMNR_TABSUBPART$             TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+LOGMNR_TABCOMPART$             TABLE
+LOGMNR_TYPE$                   TABLE
+LOGMNR_COLTYPE$                TABLE
+LOGMNR_ATTRIBUTE$              TABLE
+LOGMNR_LOB$                    TABLE
+LOGMNR_CDEF$                   TABLE
+LOGMNR_CCOL$                   TABLE
+LOGMNR_ICOL$                   TABLE
+LOGMNR_LOBFRAG$                TABLE
+LOGMNR_INDPART$                TABLE
+LOGMNR_INDSUBPART$             TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+LOGMNR_INDCOMPART$             TABLE
+LOGMNRP_CTAS_PART_MAP          TABLE
+LOGMNRT_MDDL$                  TABLE
+LOGMNR_LOG$                    TABLE
+LOGMNR_PROCESSED_LOG$          TABLE
+LOGMNR_SPILL$                  TABLE
+LOGMNR_AGE_SPILL$              TABLE
+LOGMNR_RESTART_CKPT_TXINFO$    TABLE
+LOGMNR_ERROR$                  TABLE
+LOGMNR_RESTART_CKPT$           TABLE
+LOGMNR_FILTER$                 TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+LOGMNR_PARAMETER$              TABLE
+LOGMNR_SESSION$                TABLE
+LOGSTDBY$PARAMETERS            TABLE
+LOGSTDBY$EVENTS                TABLE
+LOGSTDBY$APPLY_PROGRESS        TABLE
+LOGSTDBY$APPLY_MILESTONE       TABLE
+LOGSTDBY$SCN                   TABLE
+LOGSTDBY$PLSQL                 TABLE
+LOGSTDBY$SKIP_TRANSACTION      TABLE
+LOGSTDBY$SKIP                  TABLE
+LOGSTDBY$SKIP_SUPPORT          TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+LOGSTDBY$HISTORY               TABLE
+REPCAT$_REPCAT                 TABLE
+REPCAT$_FLAVORS                TABLE
+REPCAT$_REPSCHEMA              TABLE
+REPCAT$_SNAPGROUP              TABLE
+REPCAT$_REPOBJECT              TABLE
+REPCAT$_REPCOLUMN              TABLE
+REPCAT$_KEY_COLUMNS            TABLE
+REPCAT$_GENERATED              TABLE
+REPCAT$_REPPROP                TABLE
+REPCAT$_REPCATLOG              TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+REPCAT$_DDL                    TABLE
+REPCAT$_REPGROUP_PRIVS         TABLE
+REPCAT$_PRIORITY_GROUP         TABLE
+REPCAT$_PRIORITY               TABLE
+REPCAT$_COLUMN_GROUP           TABLE
+REPCAT$_GROUPED_COLUMN         TABLE
+REPCAT$_CONFLICT               TABLE
+REPCAT$_RESOLUTION_METHOD      TABLE
+REPCAT$_RESOLUTION             TABLE
+REPCAT$_RESOLUTION_STATISTICS  TABLE
+REPCAT$_RESOL_STATS_CONTROL    TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+REPCAT$_PARAMETER_COLUMN       TABLE
+REPCAT$_AUDIT_ATTRIBUTE        TABLE
+REPCAT$_AUDIT_COLUMN           TABLE
+REPCAT$_FLAVOR_OBJECTS         TABLE
+REPCAT$_TEMPLATE_STATUS        TABLE
+REPCAT$_TEMPLATE_TYPES         TABLE
+REPCAT$_REFRESH_TEMPLATES      TABLE
+REPCAT$_USER_AUTHORIZATIONS    TABLE
+REPCAT$_OBJECT_TYPES           TABLE
+REPCAT$_TEMPLATE_REFGROUPS     TABLE
+REPCAT$_TEMPLATE_OBJECTS       TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+REPCAT$_TEMPLATE_PARMS         TABLE
+REPCAT$_OBJECT_PARMS           TABLE
+REPCAT$_USER_PARM_VALUES       TABLE
+REPCAT$_TEMPLATE_SITES         TABLE
+REPCAT$_SITE_OBJECTS           TABLE
+REPCAT$_RUNTIME_PARMS          TABLE
+REPCAT$_TEMPLATE_TARGETS       TABLE
+REPCAT$_EXCEPTIONS             TABLE
+REPCAT$_INSTANTIATION_DDL      TABLE
+REPCAT$_EXTENSION              TABLE
+REPCAT$_SITES_NEW              TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+ACCOUNT                        TABLE
+SAILOR                         TABLE
+BOATS                          TABLE
+RESERVES                       TABLE
+SQLPLUS_PRODUCT_PROFILE        TABLE
+PRODUCT_PRIVS                  VIEW
+PRODUCT_USER_PROFILE           SYNONYM
+HELP                           TABLE
+KTU                            TABLE
+CATEGORY                       TABLE
+EMPLOYE                        TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+PRODUCT                        TABLE
+COMPANY                        TABLE
+DEMO_CAT                       TABLE
+MCA                            TABLE
+CUSTOMER                       TABLE
+EMPLOYEE                       TABLE
+DEPARTMENT                     TABLE
+
+172 rows selected.
+
+SQL> create user shebin identified by tp;
+
+User created.
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> grand resource, connect to shebin;
+SP2-0734: unknown command beginning "grand reso..." - rest of line ignored.
+SQL> grant resource, connect to shebin;
+
+Grant succeeded.
+
+SQL> connect shebin
+Enter password:
+Connected.
+SQL> create table mydata(Name varchar(20),place varchar(15));
+
+Table created.
+
+SQL> insert into mydata values('Shebin',Valanchery);
+insert into mydata values('Shebin',Valanchery)
+                                   *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into mydata values('Shebin','Valanchery;);
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> insert into mydata values('Shebin','Valanchery');
+
+1 row created.
+
+SQL> insert into mydata values('Anas','Malappuram');
+
+1 row created.
+
+SQL> insert into mydata values('Abu','Kozhikode');
+
+1 row created.
+
+SQL> insert into mydata values('Maya','Kollam');
+
+1 row created.
+
+SQL> insert into mydata values('Ansi','Kozhikkode');
+
+1 row created.
+
+SQL> select *from mydata;
+
+NAME                 PLACE
+-------------------- ---------------
+Shebin               Valanchery
+Anas                 Malappuram
+Abu                  Kozhikode
+Maya                 Kollam
+Ansi                 Kozhikkode
+
+SQL> grant dba to shebin with admin option;
+grant dba to shebin with admin option
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> grant DBA to shebin WITH admin option;
+grant DBA to shebin WITH admin option
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> grant DBA to shebin;
+grant DBA to shebin
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> GRANT DBA TO shebin;
+GRANT DBA TO shebin
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> L> GRANT DBA TO shebin WITH ADMIN OPTION;
+SP2-0224: invalid starting line number
+SQL> L> GRANT DBA TO shebin WITH ADMIN OPTION;
+SP2-0224: invalid starting line number
+SQL> GRANT DBA TO shebin WITH ADMIN OPTION;
+GRANT DBA TO shebin WITH ADMIN OPTION
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> grant dba to shebin;
+grant dba to shebin
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> grant dba to shebin
+  2  ;
+grant dba to shebin
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> grant any role shebin;
+grant any role shebin
+      *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege
+
+
+SQL> grant grant any role to shebin;
+grant grant any role to shebin
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> select * from sesssion_privs;
+select * from sesssion_privs
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from session_privs;
+
+PRIVILEGE
+----------------------------------------
+CREATE SESSION
+UNLIMITED TABLESPACE
+CREATE TABLE
+CREATE CLUSTER
+CREATE SEQUENCE
+CREATE PROCEDURE
+CREATE TRIGGER
+CREATE TYPE
+CREATE OPERATOR
+CREATE INDEXTYPE
+
+10 rows selected.
+
+SQL> grant any role;
+grant any role
+      *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege
+
+
+SQL> grant any role to shebin;
+grant any role to shebin
+      *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege
+
+
+SQL> select * from mydata;
+
+NAME                 PLACE
+-------------------- ---------------
+Shebin               Valanchery
+Anas                 Malappuram
+Abu                  Kozhikode
+Maya                 Kollam
+Ansi                 Kozhikkode
+
+SQL> CONNECT system;
+Enter password:
+Connected.
+SQL> grant dba to shebin with admin option;
+
+Grant succeeded.
+
+SQL> connect shebin
+Enter password:
+Connected.
+SQL> select * from session_privs;
+
+PRIVILEGE
+----------------------------------------
+ALTER SYSTEM
+AUDIT SYSTEM
+CREATE SESSION
+ALTER SESSION
+RESTRICTED SESSION
+CREATE TABLESPACE
+ALTER TABLESPACE
+MANAGE TABLESPACE
+DROP TABLESPACE
+UNLIMITED TABLESPACE
+CREATE USER
+
+PRIVILEGE
+----------------------------------------
+BECOME USER
+ALTER USER
+DROP USER
+CREATE ROLLBACK SEGMENT
+ALTER ROLLBACK SEGMENT
+DROP ROLLBACK SEGMENT
+CREATE TABLE
+CREATE ANY TABLE
+ALTER ANY TABLE
+BACKUP ANY TABLE
+DROP ANY TABLE
+
+PRIVILEGE
+----------------------------------------
+LOCK ANY TABLE
+COMMENT ANY TABLE
+SELECT ANY TABLE
+INSERT ANY TABLE
+UPDATE ANY TABLE
+DELETE ANY TABLE
+CREATE CLUSTER
+CREATE ANY CLUSTER
+ALTER ANY CLUSTER
+DROP ANY CLUSTER
+CREATE ANY INDEX
+
+PRIVILEGE
+----------------------------------------
+ALTER ANY INDEX
+DROP ANY INDEX
+CREATE SYNONYM
+CREATE ANY SYNONYM
+DROP ANY SYNONYM
+CREATE PUBLIC SYNONYM
+DROP PUBLIC SYNONYM
+CREATE VIEW
+CREATE ANY VIEW
+DROP ANY VIEW
+CREATE SEQUENCE
+
+PRIVILEGE
+----------------------------------------
+CREATE ANY SEQUENCE
+ALTER ANY SEQUENCE
+DROP ANY SEQUENCE
+SELECT ANY SEQUENCE
+CREATE DATABASE LINK
+CREATE PUBLIC DATABASE LINK
+DROP PUBLIC DATABASE LINK
+CREATE ROLE
+DROP ANY ROLE
+GRANT ANY ROLE
+ALTER ANY ROLE
+
+PRIVILEGE
+----------------------------------------
+AUDIT ANY
+ALTER DATABASE
+FORCE TRANSACTION
+FORCE ANY TRANSACTION
+CREATE PROCEDURE
+CREATE ANY PROCEDURE
+ALTER ANY PROCEDURE
+DROP ANY PROCEDURE
+EXECUTE ANY PROCEDURE
+CREATE TRIGGER
+CREATE ANY TRIGGER
+
+PRIVILEGE
+----------------------------------------
+ALTER ANY TRIGGER
+DROP ANY TRIGGER
+CREATE PROFILE
+ALTER PROFILE
+DROP PROFILE
+ALTER RESOURCE COST
+ANALYZE ANY
+GRANT ANY PRIVILEGE
+CREATE MATERIALIZED VIEW
+CREATE ANY MATERIALIZED VIEW
+ALTER ANY MATERIALIZED VIEW
+
+PRIVILEGE
+----------------------------------------
+DROP ANY MATERIALIZED VIEW
+CREATE ANY DIRECTORY
+DROP ANY DIRECTORY
+CREATE TYPE
+CREATE ANY TYPE
+ALTER ANY TYPE
+DROP ANY TYPE
+EXECUTE ANY TYPE
+UNDER ANY TYPE
+CREATE LIBRARY
+CREATE ANY LIBRARY
+
+PRIVILEGE
+----------------------------------------
+ALTER ANY LIBRARY
+DROP ANY LIBRARY
+EXECUTE ANY LIBRARY
+CREATE OPERATOR
+CREATE ANY OPERATOR
+DROP ANY OPERATOR
+EXECUTE ANY OPERATOR
+CREATE INDEXTYPE
+CREATE ANY INDEXTYPE
+ALTER ANY INDEXTYPE
+DROP ANY INDEXTYPE
+
+PRIVILEGE
+----------------------------------------
+UNDER ANY VIEW
+QUERY REWRITE
+GLOBAL QUERY REWRITE
+EXECUTE ANY INDEXTYPE
+UNDER ANY TABLE
+CREATE DIMENSION
+CREATE ANY DIMENSION
+ALTER ANY DIMENSION
+DROP ANY DIMENSION
+MANAGE ANY QUEUE
+ENQUEUE ANY QUEUE
+
+PRIVILEGE
+----------------------------------------
+DEQUEUE ANY QUEUE
+CREATE ANY CONTEXT
+DROP ANY CONTEXT
+CREATE ANY OUTLINE
+ALTER ANY OUTLINE
+DROP ANY OUTLINE
+ADMINISTER RESOURCE MANAGER
+ADMINISTER DATABASE TRIGGER
+MERGE ANY VIEW
+ON COMMIT REFRESH
+RESUMABLE
+
+PRIVILEGE
+----------------------------------------
+SELECT ANY DICTIONARY
+DEBUG CONNECT SESSION
+DEBUG ANY PROCEDURE
+FLASHBACK ANY TABLE
+GRANT ANY OBJECT PRIVILEGE
+CREATE EVALUATION CONTEXT
+CREATE ANY EVALUATION CONTEXT
+ALTER ANY EVALUATION CONTEXT
+DROP ANY EVALUATION CONTEXT
+EXECUTE ANY EVALUATION CONTEXT
+CREATE RULE SET
+
+PRIVILEGE
+----------------------------------------
+CREATE ANY RULE SET
+ALTER ANY RULE SET
+DROP ANY RULE SET
+EXECUTE ANY RULE SET
+EXPORT FULL DATABASE
+IMPORT FULL DATABASE
+CREATE RULE
+CREATE ANY RULE
+ALTER ANY RULE
+DROP ANY RULE
+EXECUTE ANY RULE
+
+PRIVILEGE
+----------------------------------------
+ANALYZE ANY DICTIONARY
+ADVISOR
+CREATE JOB
+CREATE ANY JOB
+EXECUTE ANY PROGRAM
+EXECUTE ANY CLASS
+MANAGE SCHEDULER
+SELECT ANY TRANSACTION
+DROP ANY SQL PROFILE
+ALTER ANY SQL PROFILE
+ADMINISTER SQL TUNING SET
+
+PRIVILEGE
+----------------------------------------
+ADMINISTER ANY SQL TUNING SET
+CREATE ANY SQL PROFILE
+MANAGE FILE GROUP
+MANAGE ANY FILE GROUP
+READ ANY FILE GROUP
+CHANGE NOTIFICATION
+CREATE EXTERNAL JOB
+
+161 rows selected.
+
+SQL> create user anu identified by tp;
+
+User created.
+
+SQL> connect anu
+Enter password:
+ERROR:
+ORA-01045: user ANU lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> connect anu
+Enter password:
+ERROR:
+ORA-01045: user ANU lacks CREATE SESSION privilege; logon denied
+
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> connect anu
+Enter password:
+ERROR:
+ORA-01045: user ANU lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> grant resource,connect to anu;
+SP2-0640: Not connected
+SQL> connect shebin
+Enter password:
+Connected.
+SQL> connect anu;
+Enter password:
+ERROR:
+ORA-01045: user ANU lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> CONNECT / AS SYSDBA;
+Connected.
+SQL>
+SQL> GRANT CREATE SESSION TO ANU;
+
+Grant succeeded.
+
+SQL> connect anu
+Enter password:
+Connected.
+SQL> select *from mydata;
+select *from mydata
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> connect shebin
+Enter password:
+Connected.
+SQL> grant select,insert on mydata to anu with grant option;
+
+Grant succeeded.
+
+SQL> connect anu
+Enter password:
+Connected.
+SQL> select * from shebin.mydata;
+
+NAME                 PLACE
+-------------------- ---------------
+Shebin               Valanchery
+Anas                 Malappuram
+Abu                  Kozhikode
+Maya                 Kollam
+Ansi                 Kozhikkode
+
+SQL> revoke select on anu from mydata;
+revoke select on anu from mydata
+                 *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> revoke select on anu from shebin.mydata;
+revoke select on anu from shebin.mydata
+                                *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> REVOKE SELECT ON mydata FROM anu;
+REVOKE SELECT ON mydata FROM anu
+                 *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM all_tables WHERE table_name = 'MYDATA';
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+SHEBIN                         MYDATA
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+SYSTEM
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+                               VALID            10         40          1
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+       255          65536                       1  2147483645
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+         1               1 YES N
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+         1
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+         1                                   N                ENABLED
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+                      NO               N N NO  DEFAULT DISABLED NO  NO
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+                DISABLED YES                                DISABLED DISABLED
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+NO
+
+OWNER                          TABLE_NAME
+------------------------------ ------------------------------
+TABLESPACE_NAME                CLUSTER_NAME
+------------------------------ ------------------------------
+IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS
+------------------------------ -------- ---------- ---------- ----------
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE
+---------- -------------- ----------- ----------- ----------- ------------
+ FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE
+---------- --------------- --- - ---------- ---------- ------------ ----------
+ CHAIN_CNT AVG_ROW_LEN AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS
+---------- ----------- ------------------------- -------------------
+DEGREE
+----------------------------------------
+INSTANCES                                CACHE                TABLE_LO
+---------------------------------------- -------------------- --------
+SAMPLE_SIZE LAST_ANAL PAR IOT_TYPE     T S NES BUFFER_ ROW_MOVE GLO USE
+----------- --------- --- ------------ - - --- ------- -------- --- ---
+DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS
+--------------- -------- --- ------------------------------ -------- --------
+DRO
+---
+
+
+SQL> connect shebin
+Enter password:
+Connected.
+SQL> REVOKE SELECT ON mydata FROM anu;
+
+Revoke succeeded.
+
+SQL> connect anu
+Enter password:
+Connected.
+SQL> select * from shebin.mydata;
+select * from shebin.mydata
+                     *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> grant select,insert on mydata to anu with grant option;
+grant select,insert on mydata to anu with grant option
+                       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> connect shebin
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> connect shebin
+Enter password:
+Connected.
+SQL> grant select,insert on mydata to anu with grant option;
+
+Grant succeeded.
+
+SQL> connect anu
+Enter password:
+Connected.
+SQL> se;lect * from shebin.mydata;
+SP2-0734: unknown command beginning "se;lect * ..." - rest of line ignored.
+SQL> select * from shebin.mydata;
+
+NAME                 PLACE
+-------------------- ---------------
+Shebin               Valanchery
+Anas                 Malappuram
+Abu                  Kozhikode
+Maya                 Kollam
+Ansi                 Kozhikkode
+
+SQL> connect shebin
+Enter password:
+Connected.
+SQL> revoke select on anu from mydata;
+revoke select on anu from mydata
+                 *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> REVOKE SELECT ON mydata FROM anu;
+
+Revoke succeeded.
+
+SQL> connect anu
+Enter password:
+Connected.
+SQL> select *from shebin.mydata;
+select *from shebin.mydata
+                    *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> connect shebin
+Enter password:
+Connected.
+SQL> revoke dba from anu;
+revoke dba from anu
+*
+ERROR at line 1:
+ORA-01951: ROLE 'DBA' not granted to 'ANU'
+
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> revoke dba from shebin
+  2  ;
+
+Revoke succeeded.
+
+SQL>

@@ -1,0 +1,28 @@
+CREATE OR REPLACE FUNCTION factorial(n NUMBER) RETURN NUMBER IS
+DECLARE
+    result NUMBER := 1;
+BEGIN
+n:=&n;    
+    IF n = 0 THEN
+        RETURN 1;
+    ELSE
+        FOR i IN 1..n LOOP
+            result := result * i;
+        END LOOP;
+        RETURN result;
+    END IF;
+END factorial;
+/
+
+CREATE OR REPLACE FUNCTION factorial(n NUMBER) RETURN NUMBER IS
+DECLARE
+    num NUMBER(5);
+    fact NUMBER;
+BEGIN
+    num:=&num;
+    fact:=fact*i
+    fact := factorial(num);
+    DBMS_OUTPUT.PUT_LINE('Factorial of ' || num || ' is ' || fact);
+END;
+/
+

@@ -1,0 +1,54 @@
+set serveroutput on;
+create or replace function factorialnum(num in number);
+return number is
+declare
+i number(2);
+fact number(4);
+fact=1;
+begin
+num:=&num;
+fact:=fact*i;
+factorialnum(i);
+dbms_output.put_line("factorial of a number:"||fact);
+end factorialnum;
+/
+
+DECLARE
+    num NUMBER :
+    fact NUMBER;
+BEGIN
+    fact := factorial(num);
+    DBMS_OUTPUT.PUT_LINE('Factorial of ' || num || ' is ' || fact);
+END;
+/
+
+
+ SET SERVEROUTPUT ON;
+ DECLARE
+     input_string VARCHAR2(100) := 'Hello, World
+     inverted_string VARCHAR2(100);
+ BEGIN
+      FOR i IN REVERSE 1..LENGTH(input_string) LOOP
+           inverted_string := inverted_string || SUBSTR(input_string, i, 1);
+      END LOOP;
+
+      DBMS_OUTPUT.PUT_LINE('Original String: ' || input_string);
+      DBMS_OUTPUT.PUT_LINE('Inverted String: ' || inverted_string);
+  END;
+ /
+
+
+ SET SERVEROUTPUT ON;
+
+ DECLARE
+      input_string VARCHAR2(100) := 'Hello, World!';
+     inverted_string VARCHAR2(100);
+  BEGIN
+      FOR i IN REVERSE 1..LENGTH(input_string) LOOP
+          inverted_string := inverted_string || SUBSTR(input_string, i, 1);
+      END LOOP;
+  
+      DBMS_OUTPUT.PUT_LINE('Original String: ' || input_string);
+     DBMS_OUTPUT.PUT_LINE('Inverted String: ' || inverted_string);
+   END;
+ /

@@ -1,0 +1,163 @@
+
+SQL> connect ystem
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> create table student (Roll_no int,Name varchar(10),Courses varchar(10),Year date);
+
+Table created.
+
+SQL> desc student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ COURSES                                            VARCHAR2(10)
+ YEAR                                               DATE
+
+SQL> alter table student add column Place varchar(10);
+alter table student add column Place varchar(10)
+                        *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+SQL> alter table student add  Place varchar(10);
+
+Table altered.
+
+SQL> desc student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ COURSES                                            VARCHAR2(10)
+ YEAR                                               DATE
+ PLACE                                              VARCHAR2(10)
+
+SQL> alter table student modify(Place int);
+
+Table altered.
+
+SQL> desc table student;
+Usage: DESCRIBE [schema.]object[@db_link]
+SQL> desc  student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ COURSES                                            VARCHAR2(10)
+ YEAR                                               DATE
+ PLACE                                              NUMBER(38)
+
+SQL> alter table student rename column Place to State;
+
+Table altered.
+
+SQL> desc  student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ COURSES                                            VARCHAR2(10)
+ YEAR                                               DATE
+ STATE                                              NUMBER(38)
+
+SQL> insert into student values(01,'Alan','CSE',2023,'Kerala');
+insert into student values(01,'Alan','CSE',2023,'Kerala')
+                                           *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected DATE got NUMBER
+
+
+SQL> alter table student modify(Year int);
+
+Table altered.
+
+SQL> desc  student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ COURSES                                            VARCHAR2(10)
+ YEAR                                               NUMBER(38)
+ STATE                                              NUMBER(38)
+
+SQL> alter table student modify(state varchar(10));
+
+Table altered.
+
+SQL> desc  student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ COURSES                                            VARCHAR2(10)
+ YEAR                                               NUMBER(38)
+ STATE                                              VARCHAR2(10)
+
+SQL> insert into student values(01,'Alan','CSE',2023,'Kerala');
+
+1 row created.
+
+SQL> insert into student values(02,'Shebin','MCA',2025,'Tamilnadu');
+
+1 row created.
+
+SQL> desc  student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ COURSES                                            VARCHAR2(10)
+ YEAR                                               NUMBER(38)
+ STATE                                              VARCHAR2(10)
+
+SQL> select *from student;
+
+   ROLL_NO NAME       COURSES          YEAR STATE
+---------- ---------- ---------- ---------- ----------
+         1 Alan       CSE              2023 Kerala
+         2 Shebin     MCA              2025 Tamilnadu
+
+SQL> insert into student values(03,'Merin','MCA',2025,'UP');
+
+1 row created.
+
+SQL> select *from student;
+
+   ROLL_NO NAME       COURSES          YEAR STATE
+---------- ---------- ---------- ---------- ----------
+         1 Alan       CSE              2023 Kerala
+         2 Shebin     MCA              2025 Tamilnadu
+         3 Merin      MCA              2025 UP
+
+SQL> truncate table student;
+
+Table truncated.
+
+SQL> select *from student;
+
+no rows selected
+
+SQL> desc  student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ COURSES                                            VARCHAR2(10)
+ YEAR                                               NUMBER(38)
+ STATE                                              VARCHAR2(10)
+
+SQL> drop table student;
+
+Table dropped.
+
+SQL> desc  student;
+ERROR:
+ORA-04043: object student does not exist
