@@ -1,0 +1,68 @@
+MongoDB shell version: 3.2.22
+connecting to: test
+> use shebin;
+switched to db shebin
+> db
+shebin
+> show db
+2024-05-09T12:34:26.430+0530 E QUERY    [thread1] Error: don't know how to show [db] :
+shellHelper.show@src/mongo/shell/utils.js:885:11
+shellHelper@src/mongo/shell/utils.js:671:15
+@(shellhelp2):1:1
+
+> show db;
+2024-05-09T12:34:31.039+0530 E QUERY    [thread1] Error: don't know how to show [db] :
+shellHelper.show@src/mongo/shell/utils.js:885:11
+shellHelper@src/mongo/shell/utils.js:671:15
+@(shellhelp2):1:1
+
+> show dbs
+local  0.000GB
+> show shebin;
+2024-05-09T12:34:55.715+0530 E QUERY    [thread1] Error: don't know how to show [shebin] :
+shellHelper.show@src/mongo/shell/utils.js:885:11
+shellHelper@src/mongo/shell/utils.js:671:15
+@(shellhelp2):1:1
+
+> show shebins;
+2024-05-09T12:35:00.608+0530 E QUERY    [thread1] Error: don't know how to show [shebins] :
+shellHelper.show@src/mongo/shell/utils.js:885:11
+shellHelper@src/mongo/shell/utils.js:671:15
+@(shellhelp2):1:1
+
+> db
+shebin
+> db.createCollection("Mycollection")
+{ "ok" : 1 }
+> show collection
+2024-05-09T12:36:34.146+0530 E QUERY    [thread1] Error: don't know how to show [collection] :
+shellHelper.show@src/mongo/shell/utils.js:885:11
+shellHelper@src/mongo/shell/utils.js:671:15
+@(shellhelp2):1:1
+
+> show Collection
+2024-05-09T12:36:39.808+0530 E QUERY    [thread1] Error: don't know how to show [Collection] :
+shellHelper.show@src/mongo/shell/utils.js:885:11
+shellHelper@src/mongo/shell/utils.js:671:15
+@(shellhelp2):1:1
+
+> show Collections
+2024-05-09T12:36:42.607+0530 E QUERY    [thread1] Error: don't know how to show [Collections] :
+shellHelper.show@src/mongo/shell/utils.js:885:11
+shellHelper@src/mongo/shell/utils.js:671:15
+@(shellhelp2):1:1
+
+> show collections
+Mycollection
+> db.collection.insertOne(
+... {
+... name : "Shebin tp",
+... age : 23
+... ,
+... status : "Unmarried"
+... }
+... )
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("663c7680c012d9664e4761b6")
+}
