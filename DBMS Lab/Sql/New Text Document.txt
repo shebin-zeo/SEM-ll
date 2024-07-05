@@ -1,0 +1,38 @@
+MongoDB shell version: 3.2.22
+connecting to: test
+> use Mydb
+switched to db Mydb
+> db.Mydetails.insertOne(Name:'Arjun',Age:23)
+2024-07-05T14:38:40.603+0530 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:27
+
+> db.Mydetails.insertOne({Name:'Arjun',Age:2}3)
+2024-07-05T14:39:34.961+0530 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:43
+
+> db.Mydetails.insertOne({Name:'Arjun',Age:23})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6687b8530c44c6847ca1ef3b")
+}
+> db.Mydetails.find().pretty()
+{
+        "_id" : ObjectId("6687b8530c44c6847ca1ef3b"),
+        "Name" : "Arjun",
+        "Age" : 23
+}
+> db.Mydetails.insertOne({Name : 'Shebin',Age:22})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6687b8a40c44c6847ca1ef3c")
+}
+> db.Mydetails.find().pretty()
+{
+        "_id" : ObjectId("6687b8530c44c6847ca1ef3b"),
+        "Name" : "Arjun",
+        "Age" : 23
+}
+{
+        "_id" : ObjectId("6687b8a40c44c6847ca1ef3c"),
+        "Name" : "Shebin",
+        "Age" : 22
+}
+>
